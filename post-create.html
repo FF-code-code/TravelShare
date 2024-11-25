@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Travel Plan</title>
+    <link rel="stylesheet" href="style3.css">
+</head>
+<body>
+    <div class="background"></div>
+    <header>
+        <div class="headercontainer">
+            <nav>
+                <div class="logo"><a href="index.html">TravelShare</a></div>
+                <input type="text" class="search-bar" placeholder="Search...">
+                <div class="nav-links">
+                    <a href="Community.html" class="community-btn">Community</a>
+                    <a href="index.html#About Us">About Us</a>
+                    <a href="index.html#FAQ">FAQ</a>
+                    <a href="#">EN</a>
+                    <a href="login.html">Log In</a>
+                    <a href="sign.html">Sign Up</a>
+                    
+                </div>
+            </nav>
+        </div>
+    </header>
+
+<p></p>
+<div class="container">
+    <h1>Create New Travel Plan</h1>
+
+    <!-- Image upload input -->
+    <div class="form-group">
+        <label for="photo">Upload Photo</label>
+        <input type="file" id="photo" accept="image/*" onchange="previewImage(event)">
+        <img id="photo-preview" style="max-width: 200px; display: none;" />
+    </div>
+
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" id="title">
+    </div>
+
+    <div class="form-group">
+        <label for="destination">Destination</label>
+        <input type="text" id="destination">
+    </div>
+
+    <div class="form-group">
+        <label for="travelWith">Travel with</label>
+        <input type="text" id="travelWith" placeholder="e.g., Family, Friends">
+    </div>
+
+    
+    <div class="form-group">
+        <label for="start-date">Start Date:</label>
+        <input type="date" id="start-date">
+    </div>
+    
+    <div class="form-group">
+        <label for="duration">Duration (days):</label>
+        <input type="number" id="duration" min="1">
+    </div>
+
+    <div class="form-group">
+        <label for="type">Type of Trip</label>
+        <input type="text" id="type" placeholder="e.g., Historical, Adventure">
+    </div>
+
+    <div class="form-group">
+        <label for="transport">Transport</label>
+        <input type="text" id="transport" placeholder="e.g., Airplane, Car">
+    </div>
+
+    <div class="form-group">
+        <label for="notes">Notes</label>
+        <textarea id="notes" rows="4"></textarea>
+    </div>
+
+    <!-- In your create post form, add a public toggle -->
+    <div class="public-toggle">
+        <label for="public">Make this post public?</label>
+        <input type="checkbox" id="public" name="public">
+    </div>
+
+    <button onclick="savePost()">Save Plan</button>
+</div>
+
+
+
+<script>
+    let photoBase64 = ''; // Store image as Base64
+
+    // Convert image to Base64 and display preview
+    function previewImage(event) {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+        reader.onload = function() {
+            photoBase64 = reader.result; // Base64 string
+            document.getElementById('photo-preview').src = photoBase64;
+            document.getElementById('photo-preview').style.display = 'block';
+        };
+        reader.readAsDataURL(file); // Convert to Base64
+    }
+    function savePost() {
+        // Create a unique postId based on timestamp
+        var postId = new Date().getTime();
+
+        // Gather data from the form fields
+        var post = {
+            photo: photoBase64, // Store the Base64-encoded image
+            id: postId, // Store postId to identify this post
+            title: document.getElementById('title').value,
+            destination: document.getElementById('destination').value,
+            travelWith: document.getElementById('travelWith').value,
+            startDate: document.getElementById('start-date').value,
+            duration: parseInt(document.getElementById('duration').value, 10),
+            type: document.getElementById('type').value,
+            transport: document.getElementById('transport').value,
+            notes: document.getElementById('notes').value
+        };
+
+        // Save the post to localStorage
+        localStorage.setItem(postId, JSON.stringify(post));
+
+        // Redirect to posts.html after saving
+        alert("Travel Plan Saved!");
+        window.location.href = 'posts.html';
+    }
+
+    document.getElementById('create-post-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form from reloading the page
+
+        const postTitle = document.getElementById('post-title').value;
+        const postDescription = document.getElementById('post-description').value;
+        const postPlace = document.getElementById('place').value;
+        const isPublic = document.getElementById('public').checked;  // Get public status
+
+        // Create a new post object
+        const newPost = {
+            title: postTitle,
+            description: postDescription,
+            place: postPlace,
+            public: isPublic
+        };
+
+        // Save the post to localStorage or a backend (this example uses localStorage)
+        let posts = JSON.parse(localStorage.getItem('posts')) || [];
+        posts.push(newPost);
+        localStorage.setItem('posts', JSON.stringify(posts));
+
+        // Redirect to the community page or display success message
+        window.location.href = 'community.html';
+    });
+</script>
+
+</body>
+</html>

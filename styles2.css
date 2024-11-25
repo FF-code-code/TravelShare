@@ -1,0 +1,397 @@
+/* for Community.html */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: linear-gradient(45deg, #87CEEB, #E0F6FF);
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+h1 {
+  text-align: center;
+}
+.h1 p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #555;
+}
+
+h2 {
+  margin-top: 2rem;
+  color: #333;
+}
+
+/* Header Styles */
+header {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 2.5rem ;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 17px
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo a {
+  font-size: 25px;
+  font-weight: bold;
+  color: #333;
+  text-decoration: none;
+}
+
+.community-btn {
+  background-color: rgb(71, 156, 205);
+  color: white !important;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+}
+
+.search-bar {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 50%;
+}
+
+.nav-links a {
+  margin-left: 1rem;
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+.nav-links a:hover {
+  color: #0077be;
+}
+
+/* Filter Bar and Community Title */
+.filter-bar {
+  margin-top: 2rem;
+  text-align: center;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-bottom: 1px solid #ccc;
+}
+
+.filter-bar h1 {
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  color: #333;
+}
+
+/* Filter Section Styles */
+.search-container {
+  display: flex;
+  justify-content: space-between;
+  background-color: #f7f7f7;
+  padding: 1rem;
+  border-radius: 8px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.filter-section {
+  display: flex;
+  flex-direction: column;
+  margin-right: 1rem;
+}
+
+.filter-section label {
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.filter-section select {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Search Button */
+.search-button {
+  align-self: center;
+}
+
+#searchButton {
+  padding: 0.5rem 1rem;
+  background-color: #0077be;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#searchButton:hover {
+  background-color: #005fa3;
+}
+
+/* Trip Posts Section (Horizontal Scroll) */
+.scroll-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 1.5rem;
+  padding-bottom: 20px;
+}
+
+.trip-post {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  text-align: center;
+  min-width: 300px;  /* Ensure each post has a fixed width */
+}
+
+.trip-post img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.trip-post h3 {
+  margin: 1rem 0;
+  color: #333;
+}
+
+.trip-post button {
+  padding: 0.5rem 1rem;
+  background-color: #0077be;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.trip-post button:hover {
+  background-color: #2492e0;
+}
+
+/* Popular Stories Section */
+.popular-stories-section {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid #ccc;
+}
+
+.story-filter {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.filter-button {
+  padding: 0.5rem 1rem;
+  margin: 0.5rem;
+  background-color: #1a669c;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.filter-button:hover {
+  background-color: #5c9bc8;
+}
+
+.popular-stories {
+  display: flex;
+  overflow-x: auto;
+  gap: 1.5rem;
+  padding-bottom: 20px;
+}
+
+.story-post {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  text-align: center;
+  min-width: 300px;
+}
+
+.story-post img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.story-post h3 {
+  margin: 1rem 0;
+  color: #333;
+}
+
+.story-post button {
+  padding: 0.5rem 1rem;
+  background-color: #1a669c;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.story-post button:hover {
+  background-color: #5c9bc8;
+}
+
+
+/* Default styles for devices smaller than 768px */
+@media (max-width: 768px) {
+  /* Header Layout: Adjust header for smaller screens */
+  header {
+      padding: 10px 15px;
+      text-align: center;
+  }
+
+  /* Logo and Navigation */
+  .headercontainer {
+     
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .logo a {
+      font-size: 24px; /* Adjust logo size */
+      margin-bottom: 10px;
+  }
+
+  .nav-links {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+  }
+
+  .nav-links a {
+      font-size: 16px;
+      padding: 8px 15px;
+  }
+
+  /* Adjust main content and filter bar layout */
+  .main-content, .trip-types {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+  }
+
+  /* Filter Bar adjustments */
+  .filter-bar .container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+  }
+
+  .filter-section {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      width: 100%;
+  }
+
+  .filter-section label {
+      font-size: 14px;
+      margin-bottom: 5px;
+  }
+
+  .filter-section select {
+      width: 100%;
+      padding: 8px;
+      font-size: 14px;
+  }
+
+  .search-button {
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+  }
+
+  /* Trip Posts (Horizontal scroll becomes vertical) */
+  .trip-posts {
+      display: grid;
+      grid-template-columns: 1fr 1fr; /* Two columns on small screens */
+      gap: 20px;
+  }
+
+  /* Popular Travel Stories Section */
+  .popular-stories {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+  }
+
+  .story-post {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+  }
+}
+
+  /*footer*/
+.footer {
+    background-color: #f5f5f5;
+    padding: 1rem;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.footer-icon .icon {
+    font-size: 20px;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.footer-copyright {
+    color: #777;
+    font-size: 14px;
+}
+
+.footer-social {
+    display: flex;
+    gap: 15px;
+}
+
+.footer-social img {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s;
+}
+
+.footer-social img:hover {
+    transform: scale(1.1);
+}

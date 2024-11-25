@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Planner - Community</title>
+    <link rel="stylesheet" href="styles2.css">
+    
+    <!-- Addition/Important css code -->
+   <style>
+    /* Loader style */
+    #loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(26, 102, 156, 0.808); /* Semi-transparent background */
+        display: none;  /* Hidden by default */
+        justify-content: center;
+        align-items: center;
+        z-index: 1000; /* Ensure it's above other content */
+    }
+
+    /* Spinner inside loader */
+    .spinner {
+        border: 16px solid #f3f3f3; /* Light gray */
+        border-top: 16px solid #3498db; /* Blue color for the spinning part */
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        animation: spin 2s linear infinite;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+   </style>
+</head>
+
+
+<body>
+  <div class="background"></div>
+  <header>
+    <!-- header -->
+      <div class="headercontainer">
+          <nav>
+              <div class="logo"><a href="index.html">TravelShare</a></div>
+              
+              <div class="nav-links">
+                  <a href="Community.html" class="community-btn">Community</a>
+                  <a href="index.html#About Us">About Us</a>
+                  <a href="index.html#FAQ">FAQ</a>
+                  
+                  <a href="#" id="my-account-link" style="display:none;">Back to My Account</a>
+                  <a href="#" id="logout-link" style="display:none;">Log Out</a>
+                  <a href="login.html" id="login-link" style="display:none;">Log In</a>
+                  <a href="sign.html" id="signup-link" style="display:none;">Sign Up</a>
+                  
+              </div>
+          </nav>
+      </div>
+  </header>
+
+
+
+    <!-- Loader -->
+    <div id="loader" class="loader">
+        <div class="spinner"></div> 
+    </div>
+
+      <div class="logo">
+        <a href="Community.html">
+        <h1>Community</h1>
+        </a>
+      </div>
+     
+    <!-- Title and Filter Bar Section -->
+    <div class="filter-bar">
+        
+        <div class="container search-container">
+            <!-- Travel Place Options -->
+            <div class="filter-section">
+                <label for="place">Travel Place</label>
+                <select id="place" aria-label="Travel Place">
+                    <option value="">  </option> <!-- Empty option -->
+                    <option value="canada">Canada</option>
+                    <option value="united states">United States</option>
+                    <option value="france">France</option>
+                    <option value="german">German</option>
+                    <option value="japan">Japan</option>
+                    <option value="south korea">South Korea</option>
+                    <option value="china">China</option>
+                </select>
+            </div>
+
+            <!-- Travel With Options -->
+            <div class="filter-section">
+                <label for="travelWith">Travel With</label>
+                <select id="travelWith" aria-label="Travel With">
+                    <option value="">  </option> <!-- Empty option -->
+                    <option value="family">Family</option>
+                    <option value="single">Single Trip</option>
+                    <option value="friends">Friends</option>
+                    <option value="group">Group</option>
+                </select>
+            </div>
+
+            <!-- Duration Options -->
+            <div class="filter-section">
+                <label for="duration">Duration</label>
+                <select id="duration" aria-label="Duration">
+                    <option value="">  </option> <!-- Empty option -->
+                    <option value="1-2">1-2 Days</option>
+                    <option value="3-4">3-4 Days</option>
+                    <option value="5-7">5-7 Days</option>
+                    <option value="8-10">8-10 Days</option>
+                    <option value="10+">10+ Days</option>
+                </select>
+            </div>
+
+            <!-- Travel Type Options -->
+            <div class="filter-section">
+                <label for="travelType">Travel Type</label>
+                <select id="travelType" aria-label="Travel Type">
+                    <option value="">  </option> <!-- Empty option -->
+                    <option value="historical">Historical</option>
+                    <option value="food">Food</option>
+                    <option value="festival">Festival</option>
+                    <option value="countryside">Countryside</option>
+                    <option value="adventure">Adventure</option>
+                </select>
+            </div>
+
+            <!-- Transportation Options -->
+            <div class="filter-section">
+                <label for="transport">Main Transportation</label>
+                <select id="transport" aria-label="Main Transportation">
+                    <option value="">  </option> <!-- Empty option -->
+                    <option value="airplane">Airplane</option>
+                    <option value="cruise">Cruise</option>
+                    <option value="car">Car</option>
+                </select>
+            </div>
+
+            <!-- Search Button -->
+            <div class="filter-section search-button">
+                <button id="searchButton">Search</button>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <!-- Trip Posts Section (Horizontal Scroll) -->
+     
+    <div class="container" id="trip-container">
+        <h2>Available Trips</h2>
+        <div class="trip-posts scroll-container" id="trip-posts">
+             <!-- Trip posts will be dynamically added here by JavaScript -->
+        </div>
+    </div>
+
+    <!-- No posts message -->
+    <div id="no-posts-message" style="display:none; font-weight: bold; text-align: center; font-size: 25px; color: #050505;">
+        <p>Here are no suitable posts now.</p> 
+        <p> Try to make one your own!!!</p>
+        <br>
+
+    </div>
+    
+ <!-- Popular Travel Stories Section -->
+    <section id="Popular Travel Stories">
+   
+    <div class="container popular-stories-section" id="popular-stories">
+        <h2>Popular Travel Stories</h2>
+        <div class="story-filter">
+            <button class="filter-button" data-location="new-york">New York</button>
+            <button class="filter-button" data-location="tokyo">Tokyo</button>
+            <button class="filter-button" data-location="singapore">Singapore</button>
+            <button class="filter-button" data-location="paris">Paris</button>
+        </div>
+        <div class="popular-stories scroll-container" id="popular-stories-posts">
+            <div class="story-post" data-location="new-york">
+                <img src="NewYork.jpg" alt="New York Story">
+                <h3>New York: A Journey Through the Big Apple</h3>
+                <button onclick="window.location.href='https://storymaps.arcgis.com/stories/f4cb92e44ad64cb6a59f391e81c08e3a'">Read More</button>
+            </div>
+            <div class="story-post" data-location="tokyo">
+                <img src="Tokyo.jpg" alt="Tokyo Story">
+                <h3>Tokyo: A City of Contrasts</h3>
+                <button onclick="window.location.href='https://tokyotouristpass.com/tokyo-a-city-of-contrasts-15-awesome-experiences-you-cant-miss/'">Read More</button>
+            </div>
+            <div class="story-post" data-location="singapore">
+                <img src="Singapore.jpg" alt="Singapore Story">
+                <h3>Singapore: From Skyscrapers to Gardens</h3>
+                <button onclick="window.location.href='https://www.escapingny.com/home/what-to-do-in-singapore'" >Read More</button>
+            </div>
+            <div class="story-post" data-location="paris">
+                <img src="Paris.jpg" alt="Paris Story">
+                <h3>Paris: Romance in the Air</h3>
+                <button onclick="window.location.href='https://dreamsinparis.com/most-romantic-things-to-do-in-paris/'" >Read More</button>
+            </div>
+        </div>
+    </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-icon">
+                <span class="icon">TS</span>
+            </div>
+            <div class="footer-copyright">
+                <p>© 2024 Travel Share Company, Inc</p>
+            </div>
+            <div class="footer-social">
+                <a href="#" class="social-link"><img src="twitter-icon.png" alt="Twitter"></a>
+                <a href="#" class="social-link"><img src="instagram-icon.png" alt="Instagram"></a>
+                <a href="#" class="social-link"><img src="facebook-icon.png" alt="Facebook"></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+
+    <script>
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBqtz6jWmunVwy254j1zcrx_PaPqobKqWE",
+            authDomain: "travelshare-c4991.firebaseapp.com",
+            projectId: "travelshare-c4991",
+            storageBucket: "travelshare-c4991.firebasestorage.app",
+            messagingSenderId: "298230247489",
+            appId: "1:298230247489:web:5dbd3c2d17b130bc3d96c0",
+            measurementId: "G-MBMX33B5QX"
+        };
+  
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+        const auth = firebase.auth();
+    </script>
+ 
+    
+    <script>
+    
+    
+    // Function to load available trips from Firebase
+    function loadAvailableTrips() {
+
+        // Show the loader when starting to fetch the data
+        document.getElementById('loader').style.display = 'flex'; // Show loader
+
+        const tripContainer = document.getElementById('trip-posts');
+        tripContainer.innerHTML = ''; // Clear the container
+
+        // Query all user posts and filter for public ones
+        database.ref('posts').once('value')
+            .then(snapshot => {
+                const allPosts = snapshot.val();
+
+                if (!allPosts) {
+                    tripContainer.innerHTML = '<p>No public trips found.</p>';
+                    return;
+                }
+
+                // Iterate through each user's posts
+                Object.keys(allPosts).forEach(userId => {
+                    const userPosts = allPosts[userId];
+                    Object.keys(userPosts).forEach(postId => {
+                        const post = userPosts[postId];
+                        if (post.public) {
+                            const postElement = document.createElement('div');
+                            postElement.classList.add('trip-post');
+                            postElement.setAttribute('data-place', post.destination); // Add place as a data attribute
+                            postElement.setAttribute('data-travelWith', post.travelWith); // Add travelWith as a data attribute
+                            postElement.setAttribute('data-duration', post.duration); // Add duration as a data attribute
+                            postElement.setAttribute('data-travelType', post.type); // Add travelType as a data attribute
+                            postElement.setAttribute('data-transport', post.transport); // Add transport as a data attribute
+
+                            // Set default photo if the user didn't upload one
+                            const postPhoto = post.photo || 'default.jpg';  // Use 'default.jpg' as the fallback image
+
+                            postElement.innerHTML = `
+                                <img src="${postPhoto}" alt="Image for ${post.title}" class="trip-image" />
+                                <h2>${post.title}</h2>
+                                <p>Destination: ${post.destination}</p>
+                                <p>Travel with: ${post.travelWith}</p>
+                                <p>Start Date: ${post.startDate}</p>
+                                <p>Duration: ${post.duration} days</p>
+                                <p>Type of Trip: ${post.type} </p>
+                                <p>Notes: ${post.notes}</p>
+                                <button class="view-details-btn" data-user-id="${userId}" data-post-id="${postId}">View Details</button>
+                            `;
+                            
+                            // Append the post to the container
+                            tripContainer.appendChild(postElement);
+
+                            // Add event listener to the button
+                            const viewDetailsBtn = postElement.querySelector('.view-details-btn');
+                            viewDetailsBtn.addEventListener('click', function() {
+                                const postId = viewDetailsBtn.getAttribute('data-post-id');
+                                const userId = viewDetailsBtn.getAttribute('data-user-id');
+                                
+                                // Redirect to the detailed view page, passing the postId and userId in the URL
+                                window.location.href = `view-post.html?postId=${postId}&userId=${userId}`;
+                            });
+                        }
+                    });
+                });
+
+                if (!tripContainer.innerHTML) {
+                    tripContainer.innerHTML = '<p>No public trips found.</p>';
+                }
+            })
+            .catch(error => {
+                console.error("Error loading public trips:", error);
+                tripContainer.innerHTML = '<p>Failed to load trips. Please try again later.</p>';
+            })
+            .finally(() => {
+                // Hide the loader when the data loading is finished
+                document.getElementById('loader').style.display = 'none';  // Hide loader
+            });
+    }
+    
+
+    window.addEventListener('DOMContentLoaded', loadAvailableTrips);
+    </script>
+
+
+    <!-- JavaScript to handle filtering -->
+    <script>
+        // Function to handle the filter functionality
+        document.getElementById('searchButton').addEventListener('click', function() {
+        const place = document.getElementById('place').value.toLowerCase();
+        const travelWith = document.getElementById('travelWith').value.toLowerCase();
+        const duration = document.getElementById('duration').value.toLowerCase();
+        const travelType = document.getElementById('travelType').value.toLowerCase();
+        const transport = document.getElementById('transport').value.toLowerCase();
+
+        const tripPosts = document.querySelectorAll('.trip-post');
+
+        // Hide "Popular Travel Stories" section and filter buttons
+        document.getElementById('popular-stories').style.display = 'none';
+        let isPostFound = false;  // Flag to check if there are any matching posts
+
+        // Hide "Popular Travel Stories" section and filter buttons
+        document.getElementById('popular-stories').style.display = 'none';
+
+        tripPosts.forEach(post => {
+            // Get the values from the data attributes of the post
+            const postPlace = post.getAttribute('data-place').toLowerCase();
+            const postTravelWith = post.getAttribute('data-travelWith').toLowerCase();
+            const postDuration = post.getAttribute('data-duration').toLowerCase();
+            const postTravelType = post.getAttribute('data-travelType').toLowerCase();
+            const postTransport = post.getAttribute('data-transport').toLowerCase();
+
+            // Duration filtering logic (handling range or exact duration)
+            let isDurationValid = true;
+
+            if (duration) {
+                // Check if duration is a range (e.g., "5-7")
+                if (duration.includes('-')) {
+                    const [min, max] = duration.split('-').map(Number);
+                    const postDurationInt = parseInt(postDuration, 10);
+
+                    // Check if the post's duration falls within the selected range
+                    if (postDurationInt < min || postDurationInt > max) {
+                        isDurationValid = false;
+                    }
+                } else {
+                    // Check if the post's duration exactly matches the selected duration
+                    if (postDuration !== duration) {
+                        isDurationValid = false;
+                    }
+                }
+            }
+
+            // Show post only if it matches selected filters or the filter is empty
+            if ((place === "" || postPlace.includes(place)) &&
+                (travelWith === "" || postTravelWith.includes(travelWith)) &&
+                (isDurationValid) &&
+                (travelType === "" || postTravelType.includes(travelType)) &&
+                (transport === "" || postTransport.includes(transport))) {
+                post.style.display = 'block';
+                isPostFound = true;  // Set flag to true if at least one post is found
+            } else {
+                post.style.display = 'none';
+            }
+        });
+
+        // If no posts are found, show the "no suitable posts" message
+    if (!isPostFound) {
+        document.getElementById('no-posts-message').style.display = 'block';
+    } else {
+        document.getElementById('no-posts-message').style.display = 'none';
+    }
+});
+
+
+        // Function to filter popular stories
+        const filterButtons = document.querySelectorAll('.filter-button');
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const location = this.getAttribute('data-location');
+                const storyPosts = document.querySelectorAll('.story-post');
+
+                
+
+                storyPosts.forEach(post => {
+                    if (post.getAttribute('data-location') === location) {
+                        post.style.display = 'block';
+                    } else {
+                        post.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+    window.addEventListener('DOMContentLoaded', function() {
+        const tripContainer = document.getElementById('trip-posts');
+
+       
+    });
+
+    // Function to view a specific post
+    function viewPost(postId) {
+        // Store the postId in localStorage or pass it via URL
+        localStorage.setItem('selectedPostId', postId);
+        window.location.href = 'view-post.html';  // Redirect to the view post page
+    }
+    </script>
+
+    <!-- Function Between Login/Signin & Back to my account/logout functions -->
+     <script>
+            
+
+        // Listen for changes in authentication state
+            auth.onAuthStateChanged(function(user) {
+            const myAccountLink = document.getElementById('my-account-link');
+            const logoutLink = document.getElementById('logout-link');
+            const loginLink = document.getElementById('login-link');
+            const signupLink = document.getElementById('signup-link');
+            
+            if (user) {
+                // User is logged in
+                myAccountLink.style.display = "inline";
+                logoutLink.style.display = "inline";
+                loginLink.style.display = "none";
+                signupLink.style.display = "none";
+                
+                // Dynamically create the link for the user's account (posts.html)
+                // Using the user's Firebase UID to generate the correct URL
+                myAccountLink.href = `posts.html?userId=${user.uid}`;  // Redirect to user's posts page
+
+                // Handle logout
+                logoutLink.addEventListener('click', function() {
+                    auth.signOut()
+                        .then(() => {
+                            alert("You have logged out.");
+                            window.location.href = "login.html";  // Redirect to login page after logout
+                        })
+                        .catch((error) => {
+                            console.error("Error logging out:", error);
+                            alert("There was an error logging you out.");
+                        });
+                });
+
+            } else {
+                // User is not logged in
+                myAccountLink.style.display = "none";
+                logoutLink.style.display = "none";
+                loginLink.style.display = "inline";
+                signupLink.style.display = "inline";
+            }
+        });
+    </script>
+
+</body>
+</html>

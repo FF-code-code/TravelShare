@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelShare - Plan, Share, Explore</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- css style for specific elements -->
+    <style>
+        .container_faq {
+            background-color: #f9f9f9;  /* Light gray background for the container */
+            padding: 20px;  /* Padding around the form */
+            border-radius: 10px;  /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  
+        }
+    
+        .faq-input {
+            background-color: #e8f0fe;  /* Light blue background for input fields */
+            border: 1px solid #ccc;  
+            border-radius: 5px; 
+            padding: 10px;  
+        }
+    
+        .faq-input:focus {
+            background-color: #d0e4ff;  /* Slightly darker blue when focused */
+            border-color: #5c9dff;  /* Change border color when focused */
+        }
+    </style>
+
+</head>
+
+
+
+<body>
+    <div class="background"></div>
+    <header>
+        <!-- header -->
+        <div class="container">
+            <nav>
+                <div class="logo"><a href="index.html">TravelShare</a></div>
+                
+                <div class="nav-links">
+                    <a href="Community.html" class="community-btn">Community</a>
+                    <a href="index.html#About Us">About Us</a>
+                    <a href="index.html#FAQ">FAQ</a>
+                    
+                    <a href="#" id="my-account-link" style="display:none;">Back to My Account</a>
+                    <a href="#" id="logout-link" style="display:none;">Log Out</a>
+                    <a href="login.html" id="login-link" style="display:none;">Log In</a>
+                    <a href="sign.html" id="signup-link" style="display:none;">Sign Up</a>
+                    
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <div class="header text-center">
+        <h1>Get Your Own Trip!</h1>
+        </div>
+        
+        <!-- Link to different section/html by interactive photo -->
+        <div class="main-content">
+            
+            <div class="content-section">
+                <div class="photo-placeholder">
+                    <a href="#" id="planning-link">
+                        <img src="Planning placeholder.jpg" alt="Planning & Memories">
+                    </a>
+                </div>
+                <h2>Planning & Memories </h2>
+                <p>Create and save your travel plans. Cherish your memories.</p>
+            </div>
+            
+            <div class="content-section">
+                <div class="photo-placeholder">
+                    <a href="Community.html" >
+                    <img src="Travel placeholder.jpg" alt="Travel Experiences">
+                    </a>
+                </div>
+                <h2>Travel Experiences (Community)</h2>
+                <p>Explore and share amazing travel stories from our community.</p>
+            </div>
+            
+            <div class="content-section">
+                <div class="photo-placeholder">
+                    <a href="Community.html#Popular Travel Stories" >
+                    <img src="Discove placeholder.jpg" alt="Discover">
+                    </a>
+                </div>
+                <h2>Discover New Destinations</h2>
+                <p>Find inspiration for your next adventure.</p>
+            </div>
+        </div>
+    </div>
+        
+
+<!-- About Us section  -->
+        <section id="About Us"></section> 
+        <div class="container">
+            <div class="about-us">
+                <section id="About Us"></section>
+                
+                <div class="about-us-content">
+                    <div class="about-us-text">
+                        <h2 style="font-size: 45px;">About Us:</h2>
+                        <p style="font-size: medium; color: rgb(13, 90, 158);font-weight: bold;">Welcome to TravelShare!!! </p>
+                            <p style="font-size: medium;color: rgb(13, 90, 158);">Your go-to platform for connecting with fellow travel enthusiasts and sharing your travel experiences. 
+                                Whether you're looking for new travel inspiration, planning your next adventure, or seeking like-minded people to explore the world with, 
+                            TravelShare is here to help. </p>
+
+                        <p style="font-size: medium;color: rgb(13, 90, 158);">Our mission is to create a vibrant community where users can share their travel stories, find group trips, 
+                            and offer valuable travel tips to others. From the bustling streets of Tokyo to the serene landscapes of the countryside, 
+                            our community brings together travelers from all over the globe, making it easier than ever to discover and plan your next unforgettable journey. 
+                            </p>
+                            <p style="font-size: medium;color: rgb(13, 90, 158);font-weight: bold;">
+                                Join us today and become a part of the TravelShare family—because great adventures are even better when shared!</p>
+                        
+                    </div>
+                    
+                        <img class="about-us-image" src="About Us.jpg" alt="About Us Image">
+                    
+                </div>   
+            </div>
+        </div>
+
+<!-- Our Aims section -->
+    <div class="container">
+        <div class="about-us">  
+            <h1 class = "text-center">Our Aims: </h1>
+            <br>
+            <h3 class = "text-center" >To connect travelers,</h3>
+            <h3>inspire adventures, </h3>
+            <h3>and create lasting memories!!!</h3>
+            <br>
+        </div>
+        <br>
+    </div>
+
+
+    <section id="FAQ"></section> 
+    <div class="container">
+        <h2 class="text-center">FAQ</h2>
+        <p class="text-center"><em>We want hear your voice !</em></p>
+        <div class="row test">
+          <div class="col-md-4">
+            <p></p>
+            <!-- Contact information -->
+            <p style="font-weight: bold;font-size: large;">Contact method : </p>
+            <p><span class="glyphicon glyphicon-map-marker"></span>Montreal. CA</p>
+            <p><span class="glyphicon glyphicon-phone"></span>Phone: +00 123 4567 8900</p>
+            <p><span class="glyphicon glyphicon-envelope"></span>Email: travelshare@gmail.com</p>
+          </div>
+          <div class="col-md-8">
+            <div class="container_faq">
+            <!-- FAQ Form to add new question -->
+            <form id="faq-form">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" class="form-control" placeholder="Enter your email (So we can reply you as soon as possible)" 
+                    required
+                    title="Please enter a valid email address so we can reply to you.">
+                </div>
+    
+                <div class="form-group">
+                    <label for="question">Comment/Question</label>
+                    <input type="text" id="question" class="form-control" placeholder="Enter your comment/question" required>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Submit FAQ</button>
+            </form>
+        </div>
+
+            <div id="faq-list" class="mt-4">
+                <!-- Display FAQs here -->
+            </div>
+        </div>
+          </div>
+        </div>
+      </div>
+    </section> 
+
+    <p></p>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-icon">
+                <span class="icon">TS</span>
+            </div>
+            <div class="footer-copyright">
+                <p>© 2024 Travel Share Company, Inc</p>
+            </div>
+            <div class="footer-social">
+                <a href="#" class="social-link"><img src="twitter-icon.png" alt="Twitter"></a>
+                <a href="#" class="social-link"><img src="instagram-icon.png" alt="Instagram"></a>
+                <a href="#" class="social-link"><img src="facebook-icon.png" alt="Facebook"></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+
+    <script>
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBqtz6jWmunVwy254j1zcrx_PaPqobKqWE",
+            authDomain: "travelshare-c4991.firebaseapp.com",
+            projectId: "travelshare-c4991",
+            storageBucket: "travelshare-c4991.firebasestorage.app",
+            messagingSenderId: "298230247489",
+            appId: "1:298230247489:web:5dbd3c2d17b130bc3d96c0",
+            measurementId: "G-MBMX33B5QX"
+        };
+  
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+        const auth = firebase.auth();
+        </script>
+
+
+        <!-- Function Between Login/Signin & Back to my account/logout functions -->
+        <script>
+            
+
+        // Listen for changes in authentication state
+            auth.onAuthStateChanged(function(user) {
+            const myAccountLink = document.getElementById('my-account-link');
+            const logoutLink = document.getElementById('logout-link');
+            const loginLink = document.getElementById('login-link');
+            const signupLink = document.getElementById('signup-link');
+            
+            if (user) {
+                // User is logged in
+                myAccountLink.style.display = "inline";
+                logoutLink.style.display = "inline";
+                loginLink.style.display = "none";
+                signupLink.style.display = "none";
+                
+                // Dynamically create the link for the user's account (posts.html)
+                // Using the user's Firebase UID to generate the correct URL
+                myAccountLink.href = `posts.html?userId=${user.uid}`;  // Redirect to user's posts page
+
+                // Handle logout
+                logoutLink.addEventListener('click', function() {
+                    auth.signOut()
+                        .then(() => {
+                            alert("You have logged out.");
+                            window.location.href = "index.html";  // Redirect to login page after logout
+                        })
+                        .catch((error) => {
+                            console.error("Error logging out:", error);
+                            alert("There was an error logging you out.");
+                        });
+                });
+
+            } else {
+                // User is not logged in
+                myAccountLink.style.display = "none";
+                logoutLink.style.display = "none";
+                loginLink.style.display = "inline";
+                signupLink.style.display = "inline";
+            }
+        });
+    </script>
+
+<!-- Planning & Memories section function -->
+    <script>
+        // Wait for the Firebase authentication state change
+        auth.onAuthStateChanged(function(user) {
+            // Get the link to Planning & Memories
+            const planningLink = document.getElementById('planning-link');
+            
+            if (user) {
+                // If the user is logged in, redirect them to their own posts page
+                planningLink.addEventListener('click', function() {
+                    window.location.href = `posts.html?userId=${user.uid}`;  // Redirect to posts.html with user UID as query parameter
+                });
+            } else {
+                // If the user is not logged in, redirect them to login page
+                planningLink.addEventListener('click', function() {
+                    window.location.href = "login.html";  // Redirect to login page
+                });
+            }
+        });
+    </script>
+<!-- Handle FAQ form submission -->
+    <script>
+        const faqForm = document.getElementById("faq-form");
+        faqForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const emailInput = document.getElementById("email");
+            const questionInput = document.getElementById("question");
+            const email = emailInput.value.trim();
+            const question = questionInput.value.trim();
+
+            if (email && question) {
+                const faqRef = database.ref("faq");
+                const newQuestionRef = faqRef.push();  // Create a new reference for the question
+                newQuestionRef.set({
+                    email: email,
+                    question: question,
+                    status: 'unanswered',  // Default status
+                    answer: ''
+                }).then(function() {
+                    // On success, show a confirmation message to the user
+                    alert("Your question has been submitted successfully!");
+                    emailInput.value = "";  // Clear the input fields after submission
+                    questionInput.value = "";
+                }).catch(function(error) {
+                    // In case of error, show an alert
+                    alert("There was an error submitting your question. Please try again.");
+                    console.error("Error submitting question:", error);
+                });
+            }
+        });
+
+    </script>
+
+
+</body>
+</html>

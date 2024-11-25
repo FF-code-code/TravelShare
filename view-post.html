@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Planner - Post Details</title>
+    <link rel="stylesheet" href="style3.css">
+</head>
+
+<!-- Addition/Important css code -->
+<style>
+    .container_viewpost{
+        width: 90%;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        
+    }
+
+    .post-image {
+            max-width: 600px;
+            display: block;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+
+    .itinerary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+    }
+    .itinerary-table th, .itinerary-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+    }
+    .itinerary-table th {
+            background-color: #f2f2f2;
+    }
+    .itinerary-table td {
+            text-align: left;
+    }    
+
+    /* Loader style */
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 102, 156, 0.808); /* Semi-transparent background */
+            display: none;  /* Hidden by default */
+            justify-content: center;
+            align-items: center;
+            z-index: 1000; /* Ensure it's above other content */
+        }
+    
+        /* Spinner inside loader */
+        .spinner {
+            border: 16px solid #f3f3f3; /* Light gray */
+            border-top: 16px solid #3498db; /* Blue color for the spinning part */
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 2s linear infinite;
+        }
+    
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+    /* Make the post image take up the full width of the container */
+    .post-image {
+        width: 100%;
+        height: auto; 
+        margin: 10px 0; 
+    }
+
+    /* Adjust the container padding on smaller screens */
+    .container_viewpost {
+        padding: 20px; 
+    }
+
+    /* Make the post title text size a bit smaller */
+    .container_viewpost h1 {
+        font-size: 1.5rem; 
+    }
+
+    /* Adjust table padding for small screens */
+    .itinerary-table th, .itinerary-table td {
+        padding: 8px; 
+    }
+
+    /* Optional: Adjust the button size on mobile */
+    .container_viewpost button {
+        width: 100%; 
+        padding: 12px 0;
+    }
+}
+      
+
+    
+</style>
+
+<body>
+    <div class="background"></div>
+    <header>
+        <div class="headercontainer">
+            <nav>
+                <div class="logo"><a href="index.html">TravelShare</a></div>
+                
+                <div class="nav-links">
+                    <a href="Community.html" class="community-btn">Community</a>
+                    <a href="index.html#About Us">About Us</a>
+                    <a href="index.html#FAQ">FAQ</a>
+                    
+                    <a href="#" id="my-account-link" style="display:none;">Back to My Account</a>
+                    <a href="#" id="logout-link" style="display:none;">Log Out</a>
+                    <a href="login.html" id="login-link" style="display:none;">Log In</a>
+                    <a href="sign.html" id="signup-link" style="display:none;">Sign Up</a>
+                    
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Loader -->
+    <div id="loader" class="loader">
+        <div class="spinner"></div> 
+    </div>
+
+ 
+    <!-- Post Detail Section -->
+    <p></p>
+    <div class="container_viewpost">
+        <h1 id="post-title">Post Title</h1>
+        <img id="post-image" src="default.jpg" alt="Post Image"  class="post-image">
+        <p id="post-place">Destination: </p>
+        <p id="post-travelWith">Travel with: </p>
+        <p id="post-duration">Duration: </p>
+        <p id="post-date">Start Date: </p>
+        <p id="post-typeOfTrip">Type of Trip: </p>
+        <p id="post-transport">Transport: </p>
+        <p id="post-notes">Trip Highlight: </p>
+        
+        
+        
+
+         <!-- Itinerary Table -->
+         <div id="itinerary-container">
+            <h3>Itinerary</h3>
+            <table id="itinerary-table" class="itinerary-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Activity</th>
+                        <th>Location</th>
+                        <th>Transport</th>
+                        <th>Hotel</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody id="itinerary-body">
+                    <!-- Itinerary rows will be inserted here dynamically -->
+                </tbody>
+            </table>
+         </div>
+
+        <!-- Back to Community Button -->
+        <button onclick="window.location.href='Community.html'">Back to Community</button>
+    </div>
+
+    <p></p>
+   <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-icon">
+                <span class="icon">TS</span>
+            </div>
+            <div class="footer-copyright">
+                <p>© 2024 Travel Share Company, Inc</p>
+            </div>
+            <div class="footer-social">
+                <a href="#" class="social-link"><img src="twitter-icon.png" alt="Twitter"></a>
+                <a href="#" class="social-link"><img src="instagram-icon.png" alt="Instagram"></a>
+                <a href="#" class="social-link"><img src="facebook-icon.png" alt="Facebook"></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Firebase setting -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+    <!-- Firebase coding -->
+    <script>
+        //Firebase configuration object
+        const firebaseConfig = {
+            apiKey: "AIzaSyBqtz6jWmunVwy254j1zcrx_PaPqobKqWE",
+            authDomain: "travelshare-c4991.firebaseapp.com",
+            projectId: "travelshare-c4991",
+            storageBucket: "travelshare-c4991.firebasestorage.app",
+            messagingSenderId: "298230247489",
+            appId: "1:298230247489:web:5dbd3c2d17b130bc3d96c0",
+            measurementId: "G-MBMX33B5QX"
+            };
+
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        
+        // Initialize Firebase Authentication
+        const auth = firebase.auth();
+        
+        // Initialize Firebase Realtime Database
+        const database = firebase.database();
+
+        // Get the postId and userId from the URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const postId = urlParams.get('postId');
+        const userId = urlParams.get('userId');
+
+    </script>
+
+<!-- Show the information of the chosen post from the database -->
+    <script>
+        window.addEventListener('DOMContentLoaded', function() {
+            console.log("DOM fully loaded and parsed");
+
+            // Show the loader while fetching posts
+            document.getElementById('loader').style.display = 'flex';
+
+            const container = document.querySelector('.container_viewpost');
+            console.log("Container element:", container); // Should log the div with id 'container_viewpost'
+
+            if (!container) {
+                console.error("container_viewpost element not found!");
+                return;
+            }
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const postId = urlParams.get('postId');
+            const userId = urlParams.get('userId');
+
+            if (postId && userId) {
+                // Fetch the post data from Firebase
+                database.ref(`posts/${userId}/${postId}`).once('value')
+                    .then(snapshot => {
+                        const post = snapshot.val();
+
+                        if (post) {
+                            // Set post details
+                            document.getElementById('post-title').textContent = post.title;
+                            document.getElementById('post-place').textContent = `Destination: ${post.destination}`;
+                            document.getElementById('post-travelWith').textContent = `Travel with: ${post.travelWith}`;
+                            document.getElementById('post-duration').textContent = `Duration: ${post.duration} days`;
+                            document.getElementById('post-typeOfTrip').textContent = `Type of Trip: ${post.type || 'N/A'}`;
+                            document.getElementById('post-transport').textContent = `Transport: ${post.transport || 'N/A'}`;
+                            document.getElementById('post-notes').textContent = `Notes: ${post.notes}`;
+                            document.getElementById('post-date').textContent = `Start Date: ${post.startDate}`;
+                            
+
+                            const postPhoto = post.photo ? post.photo : 'default.jpg';
+                            document.getElementById('post-image').src = postPhoto;
+
+                            // Get start date and duration
+                            const startDate = post.startDate; // Assuming startDate is in ISO format (e.g. "2024-10-01")
+                            const duration = post.duration;
+
+                            // Call displayItinerary with dynamically calculated dates
+                            if (Array.isArray(post.itinerary) && post.itinerary.length > 0) {
+                                displayItinerary(post.itinerary, startDate, duration);
+                            } else {
+                                document.getElementById('itinerary-container').innerHTML = '<p>No itinerary available for this post.</p>';
+                            }
+
+                        } else {
+                            container.innerHTML = '<p>Post not found.</p>';
+                        }
+
+                        // Hide the loader after data is loaded
+                        document.getElementById('loader').style.display = 'none';
+                    })
+                    .catch(error => {
+                        console.error("Error loading post details:", error);
+                        container.innerHTML = '<p>Failed to load post details. Please try again later.</p>';
+                        // Hide the loader after data is loaded
+                        document.getElementById('loader').style.display = 'none';
+                    });
+            }
+        });
+
+        // Function to display itinerary with dynamic dates
+        function displayItinerary(itineraryData, startDate, duration) {
+            const itineraryBody = document.getElementById('itinerary-body');
+            itineraryBody.innerHTML = ''; // Clear any existing rows
+
+            // Create a date object from the startDate
+            const start = new Date(startDate);
+
+            itineraryData.forEach((item, index) => {
+                // Calculate the date for this day by adding the index to the startDate
+                const currentDate = new Date(start);
+                currentDate.setDate(start.getDate() + index); // Increment the date by index
+
+                // Format the date
+                const formattedDate = currentDate.toDateString(); // e.g. "Mon Oct 01 2024"
+                const isoDate = currentDate.toISOString().split('T')[0]; // e.g. "2024-10-01"
+
+                // Create a new row for the itinerary table
+                const row = document.createElement('tr');
+
+                row.innerHTML = `
+                    <td>${formattedDate}</td>
+                    <td>${item.time || ''}</td>
+                    <td>${item.activity || ''}</td>
+                    <td>${item.location || ''}</td>
+                    <td>${item.transport || ''}</td>
+                    <td>${item.hotel || ''}</td>
+                    <td>${item.notes || ''}</td>
+                `;
+
+                itineraryBody.appendChild(row);
+            });
+
+            // If no itinerary data exists, show a fallback message
+            if (itineraryData.length === 0) {
+                document.getElementById('itinerary-container').innerHTML = '<p>No itinerary available for this post.</p>';
+            }
+        }
+    </script>
+
+    <!-- Function Between Login/Signin & Back to my account/logout functions -->
+    <script>
+            
+
+        // Listen for changes in authentication state
+            auth.onAuthStateChanged(function(user) {
+            const myAccountLink = document.getElementById('my-account-link');
+            const logoutLink = document.getElementById('logout-link');
+            const loginLink = document.getElementById('login-link');
+            const signupLink = document.getElementById('signup-link');
+            
+            if (user) {
+                // User is logged in
+                myAccountLink.style.display = "inline";
+                logoutLink.style.display = "inline";
+                loginLink.style.display = "none";
+                signupLink.style.display = "none";
+                
+                // Dynamically create the link for the user's account (posts.html)
+                // Using the user's Firebase UID to generate the correct URL
+                myAccountLink.href = `posts.html?userId=${user.uid}`;  // Redirect to user's posts page
+
+                // Handle logout
+                logoutLink.addEventListener('click', function() {
+                    auth.signOut()
+                        .then(() => {
+                            alert("You have logged out.");
+                            window.location.href = "index.html";  // Redirect to login page after logout
+                        })
+                        .catch((error) => {
+                            console.error("Error logging out:", error);
+                            alert("There was an error logging you out.");
+                        });
+                });
+
+            } else {
+                // User is not logged in
+                myAccountLink.style.display = "none";
+                logoutLink.style.display = "none";
+                loginLink.style.display = "inline";
+                signupLink.style.display = "inline";
+            }
+        });
+    </script>
+    
+
+</body>
+</html>

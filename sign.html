@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelShare - Login</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="background"></div>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo"><a href="index.html">TravelShare</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Sign-up form -->
+        <div class="auth-form" id="signup">
+            <h2>Sign Up</h2>
+            <form >
+                <input type="text" id="full-name" placeholder="Full Name" required>
+                <input type="email" id ="email" placeholder="Email" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <input type="password" id ="confirm-password" placeholder="Confirm Password" required>
+                <button type="submit" id= "signup-form">Sign Up</button>
+            </form>
+            <p>Already have an account? <a href="login.html">Log In</a></p>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-database.js"></script>
+
+    <!-- Below is the additional script for Firebase Auth -->
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-auth.js"></script>
+
+<!-- Firebase Initialization -->
+<script>
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+    apiKey: "AIzaSyBqtz6jWmunVwy254j1zcrx_PaPqobKqWE",
+    authDomain: "travelshare-c4991.firebaseapp.com",
+    projectId: "travelshare-c4991",
+    storageBucket: "travelshare-c4991.firebasestorage.app",
+    messagingSenderId: "298230247489",
+    appId: "1:298230247489:web:5dbd3c2d17b130bc3d96c0",
+    measurementId: "G-MBMX33B5QX"
+    };
+
+    // Initialize Firebase
+    const app = firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    console.log(auth);
+
+    
+
+    // Sign Up Function
+    const signUpForm = document.getElementById('signup-form');
+    console.log(signUpForm);
+    signUpForm.addEventListener('click', function (event) {
+        event.preventDefault();
+
+        
+        const fullName = document.getElementById('full-name').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirm-password').value;
+
+        // Check if password and confirm password match
+        if (password !== confirmPassword) {
+            alert("Passwords do not match");
+            return;
+        }
+
+        // Create user with email and password
+        auth.createUserWithEmailAndPassword(email, password)
+            .then((userCredential) => {
+                // Signed up successfully
+                const user = userCredential.user;
+                console.log("User signed up:", user);
+
+               
+                user.updateProfile({
+                    displayName: fullName
+                }).then(() => {
+                    alert("Account created successfully!");
+                    // Store user uid in localStorage
+                    localStorage.setItem('userId', user.uid);
+                    window.location.href = 'posts.html'; // Redirect to post.html 
+                }).catch((error) => {
+                    console.error(error);
+                    alert("Error updating profile");
+                    window.location.href = 'login.html'; // Redirect to login.html
+                });
+            })
+            .catch((error) => {
+                console.error(error);
+                alert(error.message);
+            });
+    });
+</script>
+
+    
+</body>
+</html>

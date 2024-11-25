@@ -1,0 +1,610 @@
+/* for posts.html,edit-post.html,view-post.html */
+
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    overflow-x: visible;
+  }
+  
+
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: linear-gradient(45deg, #87CEEB, #E0F6FF);
+}
+
+.headercontainer {
+    width: 90%;
+    margin: 20px auto;
+}
+  
+  h1 {
+    margin-top: 2rem;
+    color: #333;
+  }
+  
+  /* Header Styles */
+  header {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 1rem 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+.logo a {
+    font-size: 25px;
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+  }
+  
+  .search-bar {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 50%;
+  }
+  
+  .nav-links a {
+    margin-left: 1rem;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  .nav-links a:hover {
+    color: #0077be;
+  }
+
+.search-bar:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0,119,190,0.5);
+}
+
+.community-btn {
+    background-color: #479ccd;
+    color: white !important;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+  }
+
+
+/*album style*/
+
+.album-container {
+    display: flex;
+    overflow-x: auto;
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.album {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 10px;
+    min-width: 300px;
+}
+
+.album img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+
+
+/*posts, originall*/
+
+.scroll-container {
+    display: flex;
+    overflow-x: auto;
+    padding: 20px 0;
+    gap: 20px;
+}
+
+.scroll-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 10px;
+}
+
+.scroll-container::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
+
+.trip-post {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    text-align: center;
+    min-width: 300px;
+    flex-shrink: 0;
+}
+
+.trip-post img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.trip-post h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.trip-post p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #555;
+}
+
+.delete-button,
+.edit-button {
+    background-color: #db6318;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.edit-button {
+    background-color: #2c737bdc;
+}
+
+.edit-button:hover {
+    background-color: #779ab3;
+}
+
+.delete-button:hover {
+    background-color: #e38989;
+}
+
+.create-button {
+    background-color: #2c737bdc;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.create-button:hover {
+    background-color: #779ab3;
+}
+
+
+
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group2{
+    margin-bottom: 15px;
+    width:25%;
+}
+
+.form-public{
+    text-align: center; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    margin: 20px 0; 
+}
+.form-public label,
+.form-public input {
+    margin: 10px 0; /* Add some margin to separate elements */
+}
+
+label {
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 5px;
+    display: block;
+}
+
+input, select, textarea {
+    width: 95%; /* Reduced width for better alignment */
+    padding: 8px; /* Reduced padding */
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #2c737bdc;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+button:hover {
+    background-color: #779ab3;
+  }
+
+.itinerary-template {
+    margin-top: 20px;
+}
+
+/* edit-post.html plan css */
+.day-row {
+    display: grid;
+    grid-template-columns: 100px 1fr 1fr 1fr 1fr 1fr 1fr ; /* Layout for the columns */
+    gap: 10px; /* Space between columns */
+    margin-bottom: 10px; /* Added space below each row */
+    
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ffffff71;
+    border-radius: 5px;
+    background-color: #aeccd92e;
+    column-gap: 17px; /* Adds space between the columns */
+}
+
+.day-row div {
+    padding: 5px; /* Inner spacing */
+    overflow: auto; /* Add scrollbars if content exceeds the box size */
+    white-space: normal; /* Allow text to wrap */
+    max-width: 150px; 
+    height: 70px; 
+    border: 1px solid #ccc; 
+    box-sizing: border-box; /* Ensure padding is included in width/height */
+    border-radius: 3px;
+    display:inline-block;
+}
+
+/* Make the header row stand out */
+.day-header {
+    display: grid;
+    grid-template-columns: 100px 0.9fr 1fr 1fr 1fr 1fr 1fr ; /* Layout for the columns */
+    gap: 10px; /* Space between columns */
+    margin-bottom: 10px; /* Added space below each row */
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ffffff71;
+    border-radius: 5px;
+    background-color: #aeccd92e;
+    column-gap: 17px; /* Adds space between the columns */
+    font-weight: bold;
+    text-align: center;
+}
+
+
+
+/* showing the date (depend on the duration) */
+.date-header {
+    text-align: left;
+}
+
+.day-number {
+    font-weight: bold;
+    font-size: 14px; 
+}
+
+.weekday {
+    font-size: 12px; /* Smaller size for weekday */
+    color: gray; 
+}
+
+.full-date {
+    font-size: 12px; /* Adjust size for full date */
+    color: #555; /* Use a neutral color for the full date */
+}
+
+/* Ensure the "file input" section doesn't change layout */
+.day-row input[type="file"] {
+    width: 100%;
+    height: 30px;
+    border: 1px solid #ccc;
+}
+
+
+
+.hidden {
+    display: none;
+}
+
+
+
+/*album style*/
+.albumContainer {
+    display: grid;
+    /* Set a smaller minimum size for the grid items to fit more in a row */
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Fewer length, adjusted to 200px */
+    gap: 1rem; /* Space between items */
+}
+
+.album {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center; 
+    max-width: 250px; /* Set a smaller max-width to reduce the size of each album */
+    flex-shrink: 0; /* Prevent the item from shrinking */
+}
+
+.album img {
+    width: 100%;        /* Make the image width 100% of the container */
+    max-width: 300px;   
+    max-height: 200px;  
+    height: auto;       /* Maintain aspect ratio */
+    object-fit: contain;  /* Ensure the image fits within the bounds without cropping */
+    border-radius: 8px;   
+    margin-top: 10px;     
+}
+
+/*footer*/
+.footer {
+    background-color: #f5f5f5;
+    padding: 1rem;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.footer-icon .icon {
+    font-size: 20px;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.footer-copyright {
+    color: #777;
+    font-size: 14px;
+}
+
+.footer-social {
+    display: flex;
+    gap: 15px;
+}
+
+.footer-social img {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s;
+}
+
+.footer-social img:hover {
+    transform: scale(1.1);
+}
+
+
+
+
+/* Default styles for devices smaller than 768px */
+@media (max-width: 768px) {
+
+    .container_button {
+        font-size: 14px;
+        display: block;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+
+    /* Create post container */
+    .container_createpost {
+        width: 90%;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        display: none;
+    }
+
+    /* Main posts container */
+    .container_posts {
+        display: block;
+        margin: 20px auto;
+    }
+
+    /* Header styling */
+    header {
+        padding: 10px 15px;
+        text-align: center;
+    }
+
+    /* Header container, navigation links and logo */
+    .headercontainer {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .logo a {
+        font-size: 24px; /* Adjust logo size */
+        margin-bottom: 10px;
+    }
+
+    .nav-links {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .nav-links a {
+        font-size: 16px;
+        padding: 8px 15px;
+    }
+
+    /* Trip Posts Layout */
+    .trip-posts {
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* Two columns */
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    /* Individual trip post */
+    .album {
+        display: flex;
+        flex-direction: column;
+        background: #fff;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .album img {
+        width: 100%;
+        height: auto;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+
+    .album h3 {
+        font-size: 18px;
+        margin: 10px 0;
+        text-align: center;
+    }
+
+    .album p {
+        font-size: 14px;
+        margin-bottom: 5px;
+    }
+
+    .album button {
+        font-size: 14px;
+        padding: 8px 16px;
+        margin-top: 10px;
+        align-self: center;
+    }
+
+    /* Loader styles */
+    #loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(26, 102, 156, 0.808); /* Semi-transparent background */
+        display: none;  /* Hidden by default */
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    }
+
+    /* Spinner inside loader */
+    .spinner {
+        border: 16px solid #f3f3f3; /* Light gray */
+        border-top: 16px solid #3498db; /* Blue color for the spinning part */
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        animation: spin 2s linear infinite;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    /* Footer adjustments */
+    footer {
+        padding: 20px;
+        text-align: center;
+        font-size: 14px;
+    }
+
+    .footer-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .footer-icon {
+        font-size: 24px;
+    }
+
+    .footer-social {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+    }
+
+    .footer-social a {
+        font-size: 20px;
+    }
+
+    .footer-social img {
+        width: 20px;
+        height: 20px;
+    }
+
+    /* Back and Save buttons */
+    #save, #back {
+        font-size: 14px;
+        padding: 10px 20px;
+        margin-top: 15px;
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Post form adjustments for smaller screens */
+    .form-group, .form-group2 {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .form-group input, .form-group textarea, .form-group2 input {
+        width: 100%;
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .form-group label, .form-group2 label {
+        font-size: 14px;
+        margin-bottom: 5px;
+    }
+
+    .form-public {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 15px;
+    }
+
+    .form-public label {
+        margin-right: 10px;
+        font-size: 14px;
+    }
+
+    .form-public input {
+        width: auto;
+    }
+}

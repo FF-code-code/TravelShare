@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detailed Travel Plan</title>
+    <link rel="stylesheet" href="style3.css">
+
+    
+    
+</head>
+
+<!-- Addition/Important css code -->
+<style>
+    .container_editpost{
+        width: 90%;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        
+    }
+
+    /* Loader style */
+    #loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(26, 102, 156, 0.808); /* Semi-transparent background */
+        display: none;  /* Hidden by default */
+        justify-content: center;
+        align-items: center;
+        z-index: 1000; /* Ensure it's above other content */
+    }
+
+    /* Spinner inside loader */
+    .spinner {
+        border: 16px solid #f3f3f3; /* Light gray */
+        border-top: 16px solid #3498db; /* Blue color for the spinning part */
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        animation: spin 2s linear infinite;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+      
+
+    
+</style>
+
+<body>
+    <div class="background"></div>
+    <header>
+        <div class="headercontainer">
+            <nav>
+                <div class="logo"><a href="index.html">TravelShare</a></div>
+                
+                <div class="nav-links">
+                    <a href="Community.html" class="community-btn">Community</a>
+                    <a href="index.html#About Us">About Us</a>
+                    <a href="index.html#FAQ">FAQ</a>
+                    
+                    <a href=# id="logout-btn" >Log Out</a> 
+                    
+                </div>
+            </nav>
+        </div>
+    </header>
+
+        <!-- Loader -->
+        <div id="loader" class="loader">
+            <div class="spinner"></div> 
+        </div>
+
+<p></p>
+<!-- Detailed Travel Plan Form -->
+<div class="container_editpost">
+    <h1>Detailed Travel Plan</h1>
+    <h4> Remember click "Save Changes" before leave this page</h4>
+
+    <!-- Image upload input -->
+    <div class="form-group">
+        <label for="photo">Photo </label>
+        <label for="photo">Horizontal Photo (1 photo for 1 post only) </label>
+        <input type="file" id="photo_edit" accept="image/*" onchange="previewImage(event)">
+        <!-- Image preview -->
+        <img id="photo-preview" style="max-width: 300px; border-radius: 10px; display: none;" />
+    </div>
+
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" id="title" ondblclick="makeEditable(this)">
+    </div>
+
+
+    <div class="form-group">
+        <label for="destination">Destination</label>
+        <input type="text" id="destination" placeholder="e.g., Japan ,Canada, Singapore..." ondblclick="makeEditable(this)">
+    </div>
+
+    <div class="form-group">
+        <label for="travelWith">Travel with</label>
+        <input type="text" id="travelWith" placeholder="e.g., Family, Friends, Single Trip, Groups" ondblclick="makeEditable(this)">
+    </div>
+    
+    <div class="form-group2">
+        <label for="start-date">Start Date</label>
+        <input type="date" id="start-date">
+    </div>
+
+    <div class="form-group2">
+        <label for="duration">Duration (in days)</label>
+        <input type="number" id="duration" min="1" placeholder="e.g. 3 day enter 3(if unsure enter 1)" oninput="generateItinerary(this.value)" ondblclick="makeEditable(this)">
+    </div>
+
+    <div class="form-group">
+        <label for="type">Type of Trip</label>
+        <input type="text" id="type" placeholder="e.g., Historical, Adventure, Food, Festival, Countryside " ondblclick="makeEditable(this)">
+    </div>
+
+    <div class="form-group">
+        <label for="transport">Main Transport</label>
+        <input type="text" id="transport" placeholder="e.g., Airplane, Car, Cruise" ondblclick="makeEditable(this)">
+    </div>
+
+    <div class="form-group">
+        <label for="notes">Trip Highlights</label>
+        <textarea id="notes" rows="4" ondblclick="makeEditable(this)"></textarea>
+    </div>
+
+    <div class = "form_public">
+        <label style ="margin-left: 40%;display: inline"for="edit-public">Make this post public?</label>
+        <input style=" width : 10% ;display: inline;" type="checkbox" id="edit-public">
+        </div>
+
+    <!-- Itinerary Table -->
+    <div class="itinerary-template" id="itinerary-template-container">
+        <p></p>
+        <div class="day-header">
+            <div class="day-row">
+                <div><strong>Date</strong></div>
+                <div><strong>Time</strong></div>
+                <div><strong>Activity</strong></div>
+                <div><strong>Location</strong></div>
+                <div><strong>Transport</strong></div>
+                <div><strong>Hotel</strong></div>
+                <div><strong>Notes</strong></div>
+            </div>
+        </div>
+    </div>
+
+
+    <button onclick="savePost()">Save Changes</button>
+    <button onclick="window.location.href='posts.html'">Back to Account Page</button>
+</div>
+<p></p>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-icon">
+            <span class="icon">TS</span>
+        </div>
+        <div class="footer-copyright">
+            <p>© 2024 Travel Share Company, Inc</p>
+        </div>
+        <div class="footer-social">
+            <a href="#" class="social-link"><img src="twitter-icon.png" alt="Twitter"></a>
+            <a href="#" class="social-link"><img src="instagram-icon.png" alt="Instagram"></a>
+            <a href="#" class="social-link"><img src="facebook-icon.png" alt="Facebook"></a>
+        </div>
+    </div>
+</footer>
+
+
+<!-- Firebase setting -->
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+<!-- Firebase coding -->
+<script>
+    //Firebase configuration object
+    const firebaseConfig = {
+        apiKey: "AIzaSyBqtz6jWmunVwy254j1zcrx_PaPqobKqWE",
+        authDomain: "travelshare-c4991.firebaseapp.com",
+        projectId: "travelshare-c4991",
+        storageBucket: "travelshare-c4991.firebasestorage.app",
+        messagingSenderId: "298230247489",
+        appId: "1:298230247489:web:5dbd3c2d17b130bc3d96c0",
+        measurementId: "G-MBMX33B5QX"
+        };
+
+    // Initialize Firebase
+    const app = firebase.initializeApp(firebaseConfig);
+    
+    // Initialize Firebase Authentication
+    const auth = firebase.auth();
+    
+    // Initialize Firebase Realtime Database
+    const database = firebase.database();
+
+    // Get the postId from the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const postId = urlParams.get('postId');
+
+</script>
+
+<script>
+    
+    let photoBase64 = ''; // To store the Base64 string for the photo
+    let itineraryDays = [];
+
+        // Load the post data from Firebase
+        function loadPost() {
+            const user = auth.currentUser;
+            const userId = localStorage.getItem('userId'); // Get the logged-in user's UID from localStorage
+
+            // Show the loader while fetching posts
+            document.getElementById('loader').style.display = 'flex';
+
+            /// Fetch the post data from Firebase using postId and userId
+            database.ref('posts/' + userId + '/' + postId).once('value')
+                .then(snapshot => {
+                    const post = snapshot.val();
+
+                    // Hide loader after data is fetched
+                    document.getElementById('loader').style.display = 'none';
+
+                    if (post) {
+                        // Populate form fields with the existing post data
+                        document.getElementById('title').value = post.title;
+                        document.getElementById('destination').value = post.destination;
+                        document.getElementById('travelWith').value = post.travelWith;
+                        document.getElementById('start-date').value = post.startDate;
+                        document.getElementById('duration').value = post.duration;
+                        document.getElementById('type').value = post.type;
+                        document.getElementById('transport').value = post.transport;
+                        document.getElementById('notes').value = post.notes;
+                        document.getElementById('edit-public').checked = post.public || false;
+
+                        // If a photo was previously uploaded, display it in the preview
+                        if (post.photo) {
+                            photoBase64 = post.photo; // Load Base64 string into variable
+                            const photoPreview = document.getElementById('photo-preview');
+                            photoPreview.src = post.photo;
+                            photoPreview.style.display = 'block'; // Show the image preview
+                        }
+
+                        // Load the itinerary if applicable
+                        itineraryDays = post.itinerary || [];
+                        generateItinerary(post.duration);
+                    }
+                })
+                .catch(error => {
+                    // Hide loader 
+                    document.getElementById('loader').style.display = 'none';
+                    
+                });
+
+        }
+
+        // Convert the uploaded image to Base64 and display preview
+        function previewImage(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+            reader.onload = function() {
+                photoBase64 = reader.result; // Base64 string
+                document.getElementById('photo-preview').src = photoBase64;
+                document.getElementById('photo-preview').style.display = 'block';
+            };
+            reader.readAsDataURL(file); // Convert file to Base64
+        }
+
+        // Add content in Itinerary (Double click function)
+        function makeEditable(element) {
+            
+            // Make the element editable by setting contentEditable to true
+            element.contentEditable = true;
+            element.focus(); // Automatically focus the element for editing
+
+            // When the element loses focus, disable editing
+            element.onblur = function() {
+                element.contentEditable = false;
+            };
+
+            // Prevent the "Enter" key from inserting a new div or line break
+            element.addEventListener("keydown", function(event) {
+                if (event.key === "Enter") {
+                    event.preventDefault(); // Prevent the default behavior
+                    document.execCommand("insertLineBreak");
+                }
+            });
+        }
+
+        // Save changes to the post in Firebase
+        function savePost() {
+            const userId = localStorage.getItem('userId');
+            const postId = new URLSearchParams(window.location.search).get('postId');
+
+            // Collect updated data
+            const updatedPost = {
+                title: document.getElementById('title').value,
+                destination: document.getElementById('destination').value,
+                travelWith: document.getElementById('travelWith').value,
+                startDate: document.getElementById('start-date').value,
+                duration: parseInt(document.getElementById('duration').value, 10),
+                type: document.getElementById('type').value,
+                transport: document.getElementById('transport').value,
+                notes: document.getElementById('notes').value,
+                photo: photoBase64,
+                public: document.getElementById('edit-public').checked, // Updated toggle
+                itinerary: getItineraryData() // Get itinerary data
+            };
+
+            // Save updated post data to Firebase
+            database.ref(`posts/${userId}/${postId}`).update(updatedPost)
+                .then(() => {
+                    alert("Post updated successfully!");
+                    window.location.href = 'posts.html'; // Redirect back to posts list
+                })
+                .catch(error => {
+                    console.error("Error saving post:", error);
+                    alert("Failed to save changes.");
+                });
+        }
+
+
+    
+
+    // Function to generate itinerary based on the number of days
+    function generateItinerary(numDays) {
+        const container = document.getElementById('itinerary-template-container');
+        container.innerHTML = `
+            <h3>Itinerary</h3>
+            <p>Double click the box to Edit</p>
+            <div class="day-header">
+                <div><strong>Date</strong></div>
+                <div><strong>Time</strong></div>
+                <div><strong>Activity</strong></div>
+                <div><strong>Location</strong></div>
+                <div><strong>Transport</strong></div>
+                <div><strong>Hotel</strong></div>
+                <div><strong>Notes</strong></div>
+            </div>
+        `;
+        
+        // Get the start date from the input field
+        const startDate = new Date(document.getElementById('start-date').value);
+
+        // Loop through the number of days
+        for (let i = 1; i <= numDays; i++) {
+            const dayData = itineraryDays[i - 1] || {}; // Use stored data if available
+            // Create a new date by adding (i - 1) days to the start date
+            const currentDate = new Date(startDate);
+            currentDate.setDate(startDate.getDate() + (i - 1));
+
+            // Format the date to a readable string, e.g., "Mon Oct 07 2024"
+            const dateString = currentDate.toDateString(); 
+            // Format the date to ISO format (YYYY-MM-DD)
+            const isoDate = currentDate.toISOString().split('T')[0];
+
+            const weekday = currentDate.toLocaleString('default', { weekday: 'short' });
+
+            // Ensure all columns are filled, even if the dayData is missing
+            const dayDiv = document.createElement('div');
+            dayDiv.className = 'day-row';
+            dayDiv.innerHTML = `
+                <div class="date-header">
+                    <span class="day-number">Day ${i}</span><br>
+                    <span class="weekday">${weekday}</span><br>
+                    <span class="full-date" id="date-${isoDate}">${isoDate}</span>
+                </div>
+                <div ondblclick="makeEditable(this)">${dayData.time || ''}</div>
+                <div ondblclick="makeEditable(this)">${dayData.activity || ''}</div>
+                <div ondblclick="makeEditable(this)">${dayData.location || ''}</div>
+                <div ondblclick="makeEditable(this)">${dayData.transport || ''}</div>
+                <div ondblclick="makeEditable(this)">${dayData.hotel || ''}</div>
+                <div ondblclick="makeEditable(this)">${dayData.notes || ''}</div>
+            `;
+            container.appendChild(dayDiv);
+        }
+    }
+
+    
+
+    // Function to extract itinerary data from the DOM
+    function getItineraryData() {
+        const rows = document.querySelectorAll('.day-row');
+        const itineraryData = [];
+        rows.forEach((row, index) => {
+            const dayData = {
+                time: row.children[1].innerText,
+                activity: row.children[2].innerText,
+                location: row.children[3].innerText,
+                transport: row.children[4].innerText,
+                hotel: row.children[5].innerText,
+                notes: row.children[6].innerText,
+            };
+            itineraryData.push(dayData);
+        });
+        console.log("Extracted itinerary data:", itineraryData);
+        return itineraryData;
+    }
+
+        // Automatically load the post when the page loads
+    window.onload = loadPost;
+</script>
+
+<!-- Logout function -->
+<script>
+      
+    // Simple logout function
+    document.getElementById("logout-btn").addEventListener("click", function() {
+        firebase.auth().signOut()
+        .then(() => {
+            alert("You have been logged out.");
+            window.location.href = "index.html";  
+        })
+        .catch((error) => {
+            console.error("Error logging out: ", error);
+            alert("An error occurred while logging out.");
+        });
+    });
+  </script>
+
+
+</body>
+</html>
